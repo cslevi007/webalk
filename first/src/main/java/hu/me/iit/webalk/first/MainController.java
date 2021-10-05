@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import hu.me.iit.webalk.first.ArticleDto;
 
 @RestController
 @RequestMapping(path = "article")
