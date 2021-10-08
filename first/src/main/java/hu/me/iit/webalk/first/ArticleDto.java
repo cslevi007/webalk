@@ -5,8 +5,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class ArticleDto {
+	@NotNull
 	private Long id;
-	
+
     @NotBlank
     @NotNull
     private String author;

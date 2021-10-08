@@ -1,6 +1,7 @@
-package hu.me.iit.webalk.first;
+package hu.me.iit.webalk.sajat;
 
 import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.http.MediaType;
@@ -9,38 +10,38 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
 @RestController
-@RequestMapping(path = "article")
+@RequestMapping(path = "bicycle")
 public class MainController {
-	private final ArticleService articleService;
+	private final BicycleService bicycleService;
 
-	public MainController(ArticleService articleService) {
+	public MainController(BicycleService bicycleService) {
 		super();
-		this.articleService = articleService;
+		this.bicycleService = bicycleService;
 	}
-
+	
 	@GetMapping(path = "", produces= MediaType.APPLICATION_JSON_VALUE)
-	public List<ArticleDto> allArticles() {
-		return articleService.findAll();
+	public List<BicycleDto> allBicycles(){
+		return bicycleService.findAll();
 	}
-
+	
 	@PostMapping(path = "")
-	public void newArticle(@RequestBody @Valid ArticleDto articleDto) {
-		articleService.save(articleDto);
+	public void newBicycle(@RequestBody @Valid BicycleDto bicycleDto) {
+		bicycleService.save(bicycleDto);
 	}
-
+	
 	@PutMapping(path = "")
-	public void replaceArticle(@RequestBody @Valid ArticleDto articleDto) {
-		articleService.save(articleDto);
+	public void replaceBicycle(@RequestBody @Valid BicycleDto bicycleDto) {
+		bicycleService.save( bicycleDto);
 	}
-
+	
 	@DeleteMapping(path = "/{id}")
-	public void deleteArticle(@PathVariable("id") Long id){
-		articleService.deleteById(id);
+	public void deleteArticle(@PathVariable Long id) {
+		bicycleService.deleteById(id);
 	}
-
 }
