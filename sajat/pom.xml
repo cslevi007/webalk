@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>hu.me.iit.webalk</groupId>
-	<artifactId>first</artifactId>
+	<artifactId>sajat</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>first</name>
-	<description>Demo project for Spring Boot</description>
+	<name>sajat</name>
+	<description>Spring Boot application CRUD</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -38,20 +38,6 @@
     		<groupId>org.springframework.boot</groupId>
     		<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
-		
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-engine</artifactId>
-			<scope>test</scope>
-		</dependency>
-		
-		<dependency>
-    		<groupId>org.junit.vintage</groupId>
-    		<artifactId>junit-vintage-engine</artifactId>
-    		<version>5.7.0</version>
-		</dependency>
-		
-		
 	</dependencies>
 
 	<build>
