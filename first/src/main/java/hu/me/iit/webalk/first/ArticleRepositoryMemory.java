@@ -10,7 +10,7 @@ public class ArticleRepositoryMemory implements ArticleRepository{
 
 	private final List<ArticleDto> articles = new ArrayList<>();
 	
-	private int findArticleById(Long id) {
+	public int findArticleById(Long id) {
 		int found = -1;
 		for (int i = 0; i < articles.size(); i++) {
 			if(articles.get(i).getId().equals(id)) {
@@ -26,8 +26,10 @@ public class ArticleRepositoryMemory implements ArticleRepository{
 		return articles;
 	}
 
-	public ArticleDto getByID(Long id) {
-		return null;
+	public ArticleDto getById(Long id) {
+		int articleByIdIndex = findArticleById(id);
+
+        return articleByIdIndex == -1 ? null : articles.get(articleByIdIndex);
 	}
 
 	public Long save(ArticleDto articleDto) {
@@ -51,5 +53,4 @@ public class ArticleRepositoryMemory implements ArticleRepository{
 		if(found != -1)
 			articles.remove(found);
 	}
-
 }

@@ -20,8 +20,8 @@ public class ArticleServiceImpl implements ArticleService{
 		return articleRepository.findAll();
 	}
 
-	public ArticleDto getByID(Long id) {
-		return articleRepository.getByID(id);
+	public ArticleDto getById(Long id) {
+		return articleRepository.getById(id);
 	}
 
 	public Long save(ArticleDto articleDto) {

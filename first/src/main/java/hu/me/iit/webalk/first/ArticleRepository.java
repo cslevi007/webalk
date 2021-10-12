@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface ArticleRepository {
 	List<ArticleDto> findAll();
-	ArticleDto getByID(Long id);
+	ArticleDto getById(Long id);
 	Long save(ArticleDto articleDto);
 	void deleteById(Long id);
 }

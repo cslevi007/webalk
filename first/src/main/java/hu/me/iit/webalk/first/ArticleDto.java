@@ -5,47 +5,26 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class ArticleDto {
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((author == null) ? 0 : author.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((pages == null) ? 0 : pages.hashCode());
-		result = prime * result + ((title == null) ? 0 : title.hashCode());
-		return result;
+	public boolean equals(Object object) {
+		if (this == object) return true;
+		if (object == null || getClass() != object.getClass()) return false;
+		if (!super.equals(object)) return false;
+
+		ArticleDto that = (ArticleDto) object;
+
+		if (id != null ? !id.equals(that.id) : that.id != null) return false;
+		if (author != null ? !author.equals(that.author) : that.author != null) return false;
+		if (title != null ? !title.equals(that.title) : that.title != null) return false;
+		return pages != null ? pages.equals(that.pages) : that.pages == null;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ArticleDto other = (ArticleDto) obj;
-		if (author == null) {
-			if (other.author != null)
-				return false;
-		} else if (!author.equals(other.author))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (pages == null) {
-			if (other.pages != null)
-				return false;
-		} else if (!pages.equals(other.pages))
-			return false;
-		if (title == null) {
-			if (other.title != null)
-				return false;
-		} else if (!title.equals(other.title))
-			return false;
-		return true;
+	public int hashCode() {
+		int result = super.hashCode();
+		result = 31 * result + (id != null ? id.hashCode() : 0);
+		result = 31 * result + (author != null ? author.hashCode() : 0);
+		result = 31 * result + (title != null ? title.hashCode() : 0);
+		result = 31 * result + (pages != null ? pages.hashCode() : 0);
+		return result;
 	}
 
 	@NotNull
