@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -39,7 +40,7 @@ public class ServiceImplTest {
 	    final int FIVE = 5;
 
 	    //WHEN
-	    int result = service.return5();
+	    int result = service.returnFive();
 
 	    //THEN
 	    assertEquals(FIVE, result);
@@ -47,17 +48,50 @@ public class ServiceImplTest {
 
 
 	@Test
-	void dependencyReturnValueIsUsed(){
+	void dependencyReturnValueIsUsedTest(){
 
 	    //GIVEN
 	    final int FIVE = 5;
 	    when(dependency.helpNoParameterReturnValue()).thenReturn(FIVE);
 
 	    //WHEN
-	    int result = service.callHelpAndUsedReturnValue();
+	    int result = service.callHelpAndUseReturnValue();
 
 	    //THEN
 	    verify(dependency, times(1)).helpNoParameterReturnValue();
 	    assertEquals(FIVE, result);
 	    }
+	
+	@Test
+    // Is the service calls the dependency?
+    // Is the parameter of dependency method appropriate?
+	void callHelpAndPassParameter5Test() {
+    // GIVEN
+    final int FIVE = 5;
+
+    // WHEN
+    service.callHelpAndPassParameter5();
+
+    // THEN
+    ArgumentCaptor<Integer> captor = ArgumentCaptor.forClass(Integer.class);
+
+    verify(dependency, times(1)).helpWithParameterNoReturnValue(captor.capture());
+    assertEquals(FIVE,captor.getValue());
+	}
+	
+	@Test
+    void getImportantAbstractTest(){
+		//GIVEN
+		String testString = "abcdegfhzunbg";
+        String expected = "<b>abc...</b>";
+        String goal = service.getFirst3Char(testString);
+        when(dependency.important(goal)).thenReturn("<b>abc...</b>");
+
+        //WHEN
+        String result = service.getImportantAbstract(testString);
+
+        //THEN
+        verify(dependency, times(1)).important(goal);
+        assertEquals(expected, result);
+    }
 }
