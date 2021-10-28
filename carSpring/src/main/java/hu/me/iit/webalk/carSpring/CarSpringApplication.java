@@ -2,6 +2,7 @@ package hu.me.iit.webalk.carSpring;
 
 import java.util.Arrays;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -10,7 +11,7 @@ import hu.me.iit.webalk.carSpring.Impl.ElectricEngine;
 import hu.me.iit.webalk.carSpring.Impl.WheelImpl;
 
 @SpringBootApplication
-public class CarSpringApplication {
+public class CarSpringApplication  implements CommandLineRunner{
 
 	private Engine engine;
 	private String type;
@@ -19,6 +20,7 @@ public class CarSpringApplication {
 		SpringApplication.run(CarSpringApplication.class, args);
 	}
 	
+	@Override
 	public void run(String... args) throws Exception {
 		Engine engine = new CombustionEngine(110, 1800);
 		Wheel[] wheels = new WheelImpl[4];
