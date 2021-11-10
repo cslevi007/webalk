@@ -1,4 +1,4 @@
-package hu.me.itt.webapps.db;
+package hu.me.itt.webapps.db.repository;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +13,24 @@ public class People {
 	private String name;
 	
 	private int age;
+	
+	public People() {
+    }
+    
+	/*
+    public People(hu.me.itt.webapps.db.service.People people) {
+        this.age = people.getAge();
+        this.name = people.getName();
+        this.id = people.getId();
+    }
+    */
+     
+
+    public People(Long id, int age, String name) {
+        this.id = id;
+        this.age = age;
+        this.name = name;
+    }
 
 	public Long getId() {
 		return id;

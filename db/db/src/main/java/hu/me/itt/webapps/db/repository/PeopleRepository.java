@@ -1,4 +1,4 @@
-package hu.me.itt.webapps.db;
+package hu.me.itt.webapps.db.repository;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 

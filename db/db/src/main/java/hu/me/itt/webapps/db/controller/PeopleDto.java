@@ -1,13 +1,15 @@
-package hu.me.itt.webapps.db;
+package hu.me.itt.webapps.db.controller;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+
+import hu.me.itt.webapps.db.service.People;
 
 public class PeopleDto {
 	private Long id;
 	@NotEmpty
 	private String name;
-	@Size(min=18)
+	@Min(18)
 	private int age;
 	
 	public PeopleDto() {
