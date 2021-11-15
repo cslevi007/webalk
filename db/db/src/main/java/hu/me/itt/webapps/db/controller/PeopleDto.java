@@ -47,7 +47,9 @@ public class PeopleDto {
 		this.age = age;
 	}
 	
-	
+	public People toPeople() {
+		return new People(id, age, name);
+	}
 	
 	
 }
