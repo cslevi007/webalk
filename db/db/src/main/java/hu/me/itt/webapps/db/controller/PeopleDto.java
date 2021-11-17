@@ -49,7 +49,5 @@ public class PeopleDto {
 	
 	public People toPeople() {
 		return new People(id, age, name);
-	}
-	
-	
+	}	
 }
