@@ -64,4 +64,25 @@ public class TripController {
 	public TripDto patchTrip(@RequestBody TripDto tripDto) {
 		return new TripDto(tripService.patchTrip(tripDto.toTrip()));
 	}
+	
+	@GetMapping("/longestTrip")
+	public TripDto getLongestTrip() {
+		return new TripDto(tripService.findLongestDistance());
+	}
+	
+	@GetMapping("/betweenDiffTop2/{low}/{high}")
+	public Iterable<TripDto> getTop2TripsBetweenDifficulty(@PathVariable Integer low,  @PathVariable Integer high){
+		List<TripDto> list = new ArrayList<>();
+		
+		for (Trip trip : tripService.findTop2BetweenDifficulty(low, high)) {
+			list.add(new TripDto(trip));
+		}
+		
+		return list;
+	}
+	
+	@GetMapping("/distGreaterThan/{dist}")
+	public Integer getDistanceGreaterThan(@PathVariable Double dist) {
+		return tripService.countOfGreaterDistanceTripsThan(dist);
+	}
 }

@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import org.hibernate.engine.query.spi.sql.NativeSQLQueryCollectionReturn;
 import org.springframework.stereotype.Service;
 
 import hu.me.u678mf.trips.repository.TripEntity;
@@ -96,6 +97,25 @@ public class TripServiceImpl implements TripService{
 		} else {
 			throw new CannotUpdateNonExistingElementException(trip);
 		}
+	}
+
+	@Override
+	public Trip findLongestDistance() {
+		Optional<TripEntity> optional = tripRepository.findTopByOrderByDistanceDesc();
+		if(optional.isEmpty()) {
+			throw new NoSuchTripException();
+		}
+		return new Trip(optional.get());
+	}
+
+	@Override
+	public Iterable<Trip> findTop2BetweenDifficulty(Integer low, Integer high) {
+		return StreamSupport.stream(tripRepository.findTop2ByDifficultyBetweenOrderByDifficultyDesc(low, high).spliterator(), false).map(Trip::new).collect(Collectors.toList());
+	}
+
+	@Override
+	public Integer countOfGreaterDistanceTripsThan(Double dist) {
+		return tripRepository.countByDistanceGreaterThan(dist);
 	}
 
 }
